@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://pr-backend-86px.onrender.com/api/auth"; 
+const BASE_URL = "https://pr-backend-86px.onrender.com/api"; 
 
 
 const api = axios.create({
