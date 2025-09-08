@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://pr-backend-86px.onrender.com/api"; 
+const BASE_URL = "https://pr-backend-86px.onrender.com/api/auth"; 
 
 
 const api = axios.create({
@@ -10,7 +10,7 @@ const api = axios.create({
   },
 });
 
-// Optional: Add interceptors (for auth tokens later if needed)
+
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

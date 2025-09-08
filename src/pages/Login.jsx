@@ -15,7 +15,7 @@ export default function Login({ onLogin }) {
     setLoading(true);
     setMsg(null);
     try {
-      const { data } = await api.post("/api/auth/login", form);
+      const { data } = await api.post("/login", form);
       const token = data?.token || data?.accessToken;
       if (token) {
         localStorage.setItem("token", token);

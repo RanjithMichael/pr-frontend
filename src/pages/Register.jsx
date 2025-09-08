@@ -13,7 +13,7 @@ export default function Register() {
     setLoading(true);
     setMsg(null);
     try {
-      await api.post("/api/auth/register", form);
+      await api.post("/register", form);
       setMsg({ type: "success", text: "Registered successfully. You can log in now." });
       setForm({ name: "", email: "", password: "" });
     } catch (err) {

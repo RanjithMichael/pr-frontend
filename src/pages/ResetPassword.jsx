@@ -19,7 +19,7 @@ export default function ResetPassword() {
     }
     setLoading(true);
     try {
-      const { data } = await api.post(`/api/auth/reset-password/${token}`, { password });
+      const { data } = await api.put(`/reset-password/${token}`, { password });
       setMsg({ type: "success", text: data?.message || "Password has been reset. Please login." });
       setPassword(""); setConfirm("");
       setTimeout(() => navigate("/login"), 1200);
