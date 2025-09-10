@@ -14,7 +14,12 @@ export default function Login({ onLogin }) {
     e.preventDefault();
     setLoading(true);
     setMsg(null);
-    try {
+    if (!form.email || !form.password) {
+    setMsg({ type: "danger", text: "Please enter both email and password." });
+    setLoading(false);
+    return;
+  }
+  try {
       const { data } = await api.post("/login", form);
       const token = data?.token || data?.accessToken;
       if (token) {
