@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const BASE_URL = "https://pr-backend-2.onrender.com/api/auth"; // Backend URL
+const BASE_URL = "https://pr-backend-3.onrender.com/api/auth"; // Backend URL
 
 const api = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // needed for CORS if backend uses credentials
+  withCredentials: false, // TURNED OFF - backend does NOT use cookies
 });
 
-// Attach JWT token to every request if available
+// Attach JWT token to every request
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token")?.trim();
@@ -22,7 +22,7 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Global response interceptor for handling errors
+// Response interceptor
 api.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -30,7 +30,6 @@ api.interceptors.response.use(
       const { status } = error.response;
 
       if (status === 401) {
-        // Token expired or invalid
         localStorage.removeItem("token");
         alert("Session expired. Please login again.");
         window.location.href = "/login";
@@ -43,5 +42,3 @@ api.interceptors.response.use(
 );
 
 export default api;
-
-
